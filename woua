@@ -1,0 +1,346 @@
+typedef struct	s_cam
+{
+	double3		pos;
+	double3		dir;
+}				t_cam;
+
+typedef struct	s_ray
+{
+	double3		color;
+	double3		a;
+	double3		dir;
+	double3		current;
+	int			id;
+	double		t;
+}				t_ray;
+
+typedef struct	s_light
+{
+	double3		pos;
+	double3		color;
+	double3		dir;
+	double		a;
+}				t_light;
+
+typedef struct	s_object
+{
+	double3		color;
+	double3		a;
+	double3		b;
+	double3		c;
+	double		r;
+	double		min;
+	double		max;
+	char		type;
+}				t_object;
+
+double3	limit_v(double3 v, double min, double max)
+{
+	if (v.x < min)
+		v.x = min;
+	else if (v.x > max)
+		v.x = max;
+	if (v.y < min)
+		v.y = min;
+	else if (v.y > max)
+		v.y = max;
+	if (v.z < min)
+		v.z = min;
+	else if (v.z > max)
+		v.z = max;
+	return (v);
+}
+
+double	get_t_a(double delta, double a, double b)
+{
+	double	t1;
+	double	t2;
+
+	if (delta == 0)
+	{
+		t1 = -b / (2 * a);
+		return (t1);
+	}
+	else if (delta > 0)
+	{
+		t1 = (-b - sqrt(delta)) / (2 * a);
+		t2 = (-b + sqrt(delta)) / (2 * a);
+		if (t1 < t2)
+			return (t1);
+		return (t2);
+	}
+	return (-1);
+}
+
+double	check_sphere(t_ray *ray, t_object obj)
+{
+	double	a;
+	double	b;
+	double	c;
+
+	a = (ray->dir.x * ray->dir.x) + (ray->dir.y * ray->dir.y) +
+	(ray->dir.z * ray->dir.z);
+	b = 2 * (ray->dir.x * (ray->a.x - obj.a.x) + ray->dir.y *
+	(ray->a.y - obj.a.y) + ray->dir.z * (ray->a.z - obj.a.z));
+	c = (ray->a.x - obj.a.x) * (ray->a.x - obj.a.x) +
+	(ray->a.y - obj.a.y) * (ray->a.y - obj.a.y) +
+	(ray->a.z - obj.a.z) * (ray->a.z - obj.a.z) - (obj.r * obj.r);
+	return (get_t_a((b * b) - 4 * a * c, a, b));
+}
+
+double	check_cylinder(t_ray *ray, t_object obj)
+{
+	double3	v;
+	double	a;
+	double	b;
+	double	c;
+	double	delta;
+
+	obj.b = normalize(obj.b);
+	v = ray->a - obj.a;
+	a = dot(ray->dir, ray->dir) - pow(dot(ray->dir, obj.b), 2);
+	b = 2 * (dot(ray->dir, v) - dot(ray->dir, obj.b) * dot(v, obj.b));
+	c = dot(v, v) - pow(dot(v, obj.b), 2) - (obj.r * obj.r);
+	delta = get_t_a((b * b) - 4 * a * c, a, b);
+	if (delta >= 0.1)
+		return (delta);
+	return (-1);
+}
+
+double	check_plane(t_ray *ray, t_object *obj)
+{
+	double3	v;
+	double3	o;
+	double	t;
+	double	d;
+
+	o.x = 0;
+	o.y = 0;
+	o.z = 0;
+	v = obj->a - o;
+	obj->c = normalize(obj->c);
+	d = length(v);
+	t = -(obj->c.x * ray->a.x + obj->c.y * ray->a.y +
+	obj->c.z * ray->a.z + d) / (obj->c.x * ray->dir.x +
+	obj->c.y * ray->dir.y + obj->c.z * ray->dir.z);
+	if (t >= 0.001)
+		return (t);
+	return (-1);
+}
+
+double	check_cone(t_ray *ray, t_object obj)
+{
+	double3	x;
+	double	a;
+	double	b;
+	double	c;
+	double	k;
+
+	obj.b = normalize(obj.b);
+	x = ray->a - obj.a;
+	k = tan((obj.r / 2) / (180 / M_PI));
+	a = dot(ray->dir, ray->dir) - (1 + k * k) *
+	pow(dot(ray->dir, obj.b), 2);
+	b = 2 * (dot(ray->dir, x) - ((1 + k * k) *
+	dot(ray->dir, obj.b) * dot(x, obj.b)));
+	c = dot(x, x) - ((1 + k * k) * pow(dot(x, obj.b), 2));
+	c = (b * b) - 4 * a * c;
+	k = get_t_a(c, a, b);
+	if (k >= 0.01)
+		return (k);
+	return (-1);
+}
+
+double	check_triangle(t_ray *ray, t_object *obj)
+{
+	double3	p;
+	double	det;
+	double	u;
+	double	v;
+	double	t;
+
+	p = cross(ray->dir, obj->c - obj->a);
+	det = dot(obj->b - obj->a, p);
+	if (det > -0.000001 && det < 0.000001)
+		return (-1);
+	det = 1.0 / det;
+	u = dot(ray->a - obj->a, p) * det;
+	if (u < 0 || u > 1.0)
+		return (-1);
+	p = cross(ray->a - obj->a, obj->b - obj->a);
+	v = dot(ray->dir, p) * det;
+	if (v < 0 || u + v > 1.0)
+		return (-1);
+	t = dot(obj->c - obj->a, p) * det;
+	if (t > 0.000001)
+		return (t);
+	return (-1);
+}
+
+double	check_intersection(t_ray *ray, t_object obj)
+{
+	double	res;
+
+	res = -1;
+	if (obj.type == 1)
+	{
+		res = check_sphere(ray, obj);
+	}
+	else if (obj.type == 2)
+		res = check_cylinder(ray, obj);
+	else if (obj.type == 3)
+		res = check_plane(ray, &obj);
+	else if (obj.type == 4)
+		res = check_cone(ray, obj);
+	else if (obj.type == 5)
+		res = check_triangle(ray, &obj);
+	return (res);
+}
+
+void	intersection(t_ray *ray, __global t_object *obj, int nbobj)
+{
+	double	res;
+	int		i;
+
+	i = 0;
+	res = -1;
+	while (i < nbobj)
+	{
+		res = check_intersection(ray, obj[i]);
+		if (res >= 0 && ray->t != -1 && res < ray->t)
+		{
+			ray->id = i;
+			ray->t = res;
+		}
+		else if (res >= 0 && ray->t == -1)
+		{
+			ray->id = i;
+			ray->t = res;
+		}
+		i++;
+	}
+}
+
+void		set_vrep(double3 d, double3 v[3])
+{
+	v[2] = normalize(d);
+	if (fabs(v[2].y) == 1)
+	{
+		v[0].x = 1;
+		v[1].z = -v[2].y;
+		return ;
+	}
+	v[0].x = v[2].z;
+	v[0].z = -v[2].x;
+	v[1].y = sqrt(v[2].x * v[2].x + v[2].z * v[2].z);
+	v[1].x = -v[2].x / (fabs(v[2].x) + fabs(v[2].z)) * v[2].y;
+	v[1].z = -v[2].z / (fabs(v[2].x) + fabs(v[2].z)) * v[2].y;
+}
+
+void		get_normal(t_ray *ray, t_object *obj)
+{
+	double3	v;
+	double	c;
+
+	if (obj->type == 1)
+		obj->c = ray->current - obj->a;
+	else if (obj->type == 2)
+	{
+		c = length(ray->current - obj->a) * dot(normalize(obj->b), normalize(ray->current - obj->a));
+		obj->c = (obj->b * -c) + (ray->current - obj->a);
+	}
+	else if (obj->type == 4)
+	{
+		c = length(ray->current - obj->a) / dot(normalize(obj->b),
+		normalize(ray->current - obj->a));
+		obj->c = (obj->b * -c) + (ray->current - obj->a);
+	}
+}
+
+double3		get_normal_other(t_ray *ray, t_object *obj, t_light l)
+{
+	double3	n;
+
+	if (obj->type == 5)
+	{
+		n = cross(obj->a - obj->b, obj->a - obj->c);
+		if (dot(n, ray->current - l.pos) > 0)
+			n = -n;
+	}
+	return (n);
+}
+
+void		light(t_light l, t_ray *ray, t_object *obj)
+{
+	double3	v;
+	double3	n;
+	double	d;
+	int		t;
+
+	ray->color = obj->color + l.color;
+	ray->current = ray->a + (ray->dir * ray->t);
+	v = l.pos - ray->current;
+	v = normalize(v);
+	get_normal(ray, obj);
+	n.x = obj->c.x;
+	n.y = obj->c.y;
+	n.z = obj->c.z;
+	if (obj->type == 5)
+		n = get_normal_other(ray, obj, l);
+	n = normalize(n);
+	d = dot(v, n);
+	if (d < 0 || d > 1)
+		d = 0;
+	ray->color = ray->color, d;
+}
+
+void		check_light(t_light *l, t_ray *ray, t_object *obj, int nbl)
+{
+	double3	color;
+	double	part;
+	int		i;
+
+	i = 0;
+	part = (double)(1 / (double)nbl);
+	color.x = 0;
+	color.y = 0;
+	color.z = 0;
+	while (i < nbl)
+	{
+		light(l[i], ray, obj);			//DOESNOT EXIST YET
+		color = color + ray->color;
+		i++;
+	}
+	ray->color = limit_v(color, 0, 255);
+}
+
+__kernel void	render_gpu( __global int 		*pixels,
+							__global t_cam		*cam,
+							__global t_object	*obj,
+							__global int		*nbobj,
+							__global t_light	*light,
+							__global int		*nbl)
+{
+	private	int		gid = get_global_id(0);
+	private	int		x = gid % 800;
+	private	int		y = gid / 800;
+	private int		i = (y * (800 * 4)) + (x * 4);
+	private	double	ret;
+	private	double3	v[3];
+	t_ray			ray;
+
+	set_vrep(cam->dir, v);
+	ray.a = cam->pos;
+	ray.dir = normalize(((v[0] * (x - 800 / 2)) + (v[1] * (600 / 2 - y))) + (v[2] * (800 / 2)));
+
+	ray.id = -1;
+	ray.t = -1;
+	intersection(&ray, obj, *nbobj);
+	if (ray.id != -1)
+	{
+		check_light(light, &ray, &obj[ray.id], *nbl);
+		pixels[i] = ray.color.x;
+		pixels[i + 1] = ray.color.y;
+		pixels[i + 2] = ray.color.z;
+	}
+}
