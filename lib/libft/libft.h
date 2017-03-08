@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 13:28:51 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 13:02:38 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:15:44 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ double				ft_atod(char *str);
 char				*ft_dtoa(double a);
 void				ft_putdouble_fd(double v, int fd);
 int					ft_power(int n, int t);
+void				ft_free_tab(char **tab);
 
 #endif

@@ -315,4 +315,7 @@ void					get_texture(t_texture *texture, char *filename);
 t_v						plane_t(t_object *obj, t_texture *text, t_v p);
 t_v						sphere_t(t_object *obj, t_texture *text, t_v p);
 
+/* ft_link.c: */
+void					ft_link(t_winfo *winfo, char *cmd);
+
 #endif

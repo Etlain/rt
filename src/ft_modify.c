@@ -6,7 +6,7 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:37:01 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/08 15:57:55 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:42:23 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ void ft_modify(t_winfo *w, char *cmd)
         get_texture(&w->text[w->opt.oselect].texture, &cmd[8]);
     else if (ft_strncmp("reflection ", cmd, 11) == 0)
         w->text[w->opt.oselect].r = ft_atod(&cmd[11]);
+	else
+		exec3(w, cmd);
 }

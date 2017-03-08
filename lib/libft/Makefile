@@ -6,7 +6,7 @@
 #    By: abara <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/30 13:17:02 by abara             #+#    #+#              #
-#    Updated: 2017/02/24 13:02:57 by abara            ###   ########.fr        #
+#    Updated: 2017/03/08 18:28:39 by mmouhssi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FC = ft_isdigit.c ft_memcmp.c ft_putchar_fd.c ft_putstr_fd.c ft_strdel.c		\
 	 ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c			\
 	 ft_lstmap.c ft_islower.c ft_isupper.c ft_ispremier.c ft_fact.c 			\
 	 ft_swap.c get_next_line.c ft_atof.c ft_ftoa.c ft_atod.c ft_dtoa.c			\
-	 ft_putdouble_fd.c ft_power.c
+	 ft_putdouble_fd.c ft_power.c ft_free_tab.c
 
 FO = ft_isdigit.o ft_memcmp.o ft_putchar_fd.o ft_putstr_fd.o ft_strdel.o		\
 	 ft_strlcat.o ft_strncpy.o ft_strstr.o ft_atoi.o ft_isprint.o				\
@@ -41,7 +41,7 @@ FO = ft_isdigit.o ft_memcmp.o ft_putchar_fd.o ft_putstr_fd.o ft_strdel.o		\
 	 ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o			\
 	 ft_lstmap.o ft_islower.o ft_isupper.o ft_ispremier.o ft_fact.o				\
 	 ft_swap.o get_next_line.o ft_atof.o ft_ftoa.o ft_atod.o ft_dtoa.o			\
-	 ft_putdouble_fd.o ft_power.o
+	 ft_putdouble_fd.o ft_power.o ft_free_tab.o
 
 all: $(NAME)
 

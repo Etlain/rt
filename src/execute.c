@@ -6,26 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 13:07:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 16:11:23 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/08 18:45:49 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/RT.h"
-
-void	ft_free_tab(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i] != NULL)
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
-	tab = NULL;
-}
 
 void	get_nbr(t_v *t, char *str)
 {
@@ -100,6 +85,8 @@ static void	exec2(t_winfo *winfo, char *cmd)
 		winfo->opt.render = 0;
 	else if (ft_strncmp("gpu", cmd, 3) == 0)
 		winfo->opt.render = 1;
+	else if (ft_strncmp("link ", cmd, 5) == 0)
+		ft_link(winfo, &cmd[5]);
 	else if (ft_strncmp("create ", cmd, 7) == 0)
 		ft_create(winfo, cmd);
 	else if (ft_strncmp("delete ", cmd, 7) == 0)
