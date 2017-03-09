@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:56:20 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/08 18:45:51 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:34:24 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void get_nb(char *cmd, int *id_a, int *id_b)
 {

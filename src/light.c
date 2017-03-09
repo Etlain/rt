@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:53:50 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 17:38:58 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:36:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void		get_normal(t_ray *ray, t_object *obj)
 {

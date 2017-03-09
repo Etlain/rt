@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:52:08 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/02/06 15:33:02 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:32:24 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double check_ellipsoid(t_ray *ray, t_object obj)
 {

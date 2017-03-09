@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 16:28:14 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 13:40:11 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:36:19 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void	get_split(t_v *v, char **file, int x, int y)
 {

@@ -1,4 +1,4 @@
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void	press_console(t_winfo *w, int key)
 {

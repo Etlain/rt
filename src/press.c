@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:10:02 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 13:42:44 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:41:01 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 int		mouse_button(int key, int x, int y, void *param)
 {

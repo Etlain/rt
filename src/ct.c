@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/30 16:37:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/02/15 12:03:12 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:31:31 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static double *fill_p(t_ray *ray, t_object obj, double *pos)
 {

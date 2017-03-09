@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:09:56 by abara             #+#    #+#             */
-/*   Updated: 2017/02/15 12:52:19 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:40:44 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static int	check_filename(char *filename)
 {

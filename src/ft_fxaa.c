@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:02:51 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/01/25 12:50:49 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:34:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void	apply(void *img, int w, int h, int emap[w][h])
 {

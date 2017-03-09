@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 16:47:35 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/01/18 14:26:04 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:31:59 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 int				degree_2(double *pol, double *res)
 {

@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:12:48 by abara             #+#    #+#             */
-/*   Updated: 2017/02/28 16:24:06 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:35:49 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void	get_arg(t_object *obj, char **file, int x, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 12:36:57 by abara             #+#    #+#             */
-/*   Updated: 2017/02/28 16:27:38 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:36:42 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static char	*get_first(int key)
 {

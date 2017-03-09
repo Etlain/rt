@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 09:50:33 by abara             #+#    #+#             */
-/*   Updated: 2017/01/31 13:05:26 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:32:12 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void	put_pixel(t_winfo *w, int x, int y, t_v color)
 {

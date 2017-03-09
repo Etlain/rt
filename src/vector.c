@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:46:19 by abara             #+#    #+#             */
-/*   Updated: 2017/01/18 12:01:38 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:43:39 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 t_v		set_v(double x, double y, double z)
 {

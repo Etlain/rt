@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 15:06:44 by abara             #+#    #+#             */
-/*   Updated: 2017/01/25 15:13:20 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:31:08 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double	check_sphere(t_ray *ray, t_object obj)
 {

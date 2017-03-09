@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:56:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 16:03:19 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:35:26 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void	get_arg(t_winfo *w, char **file, int x, int y)
 {

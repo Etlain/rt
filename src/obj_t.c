@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 10:53:49 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/03/08 17:07:26 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:40:32 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 t_v	plane_t(t_object *obj, t_texture *text, t_v p)
 {

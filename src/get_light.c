@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 15:24:11 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 14:46:14 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:35:37 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void	get_arg(t_light *light, char **file, int x, int y)
 {

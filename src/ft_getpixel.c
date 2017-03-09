@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 16:08:39 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/01/25 12:50:29 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:34:13 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 int		ft_getpixel(void *img, int x, int y)
 {

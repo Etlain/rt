@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 11:29:15 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 13:01:19 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:37:18 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double	get_t_a(double delta, double a, double b)
 {

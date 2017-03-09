@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 10:48:58 by abara             #+#    #+#             */
-/*   Updated: 2017/02/20 16:30:42 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:36:31 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static double	check_intersection(t_ray *ray, t_object obj)
 {

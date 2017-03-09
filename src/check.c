@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:09:37 by abara             #+#    #+#             */
-/*   Updated: 2017/02/15 11:48:44 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:31:20 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static int	get_type_id(t_file *file, char **tab, int x, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 16:32:14 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/08 15:08:14 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:33:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void ft_delete_light(t_winfo *w, int id)
 {

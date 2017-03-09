@@ -1,4 +1,4 @@
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 unsigned char	*ft_ustrncpy_f(unsigned char *dest, const unsigned char *src, size_t n)
 {

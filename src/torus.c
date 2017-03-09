@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 16:05:20 by abara             #+#    #+#             */
-/*   Updated: 2017/02/15 11:51:28 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:43:25 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double			ft_condition(double *res, int max)
 {

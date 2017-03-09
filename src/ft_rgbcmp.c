@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 11:42:34 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/01/25 12:50:59 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:35:08 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double	ft_rgbcmp(int ca, int cb)
 {

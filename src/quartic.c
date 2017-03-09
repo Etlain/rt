@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:18:21 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/02/15 11:56:07 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:42:01 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void		set_cubic(double *pqr, double *pol, double *p1)
 {

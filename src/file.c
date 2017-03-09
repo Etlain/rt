@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:52:01 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 16:14:05 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:33:30 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void	put_cl_fd(char *str, t_v val, int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:10:09 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 14:25:58 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:44:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void		init_winfo_file(t_winfo *w, t_file *file)
 {

@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:22:45 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/07 17:17:10 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:33:42 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static void		create_object_by_id(t_winfo *winfo, char *cmd, int id)
 {

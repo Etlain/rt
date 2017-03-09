@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:36:08 by abara             #+#    #+#             */
-/*   Updated: 2017/01/11 14:54:45 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:37:31 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 int		check_split(char **split, int nb)
 {

@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 17:37:01 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/08 18:42:23 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:34:40 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void ft_modify(t_winfo *w, char *cmd)
 {

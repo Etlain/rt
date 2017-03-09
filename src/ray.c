@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 10:37:38 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 13:14:11 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:42:17 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 t_v reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 {

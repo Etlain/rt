@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 14:30:34 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/02/13 11:08:34 by cguilbar         ###   ########.fr       */
+/*   Updated: 2017/03/09 11:37:43 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/RT.h"
+#include "../includes/rt.h"
 
 void		set_vrep(cl_float3 d, cl_float3 v[3])
 {

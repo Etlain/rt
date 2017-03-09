@@ -6,11 +6,11 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 16:41:47 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/02/15 11:50:26 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:31:46 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static double	fill_pq_delta(double *pq, double *pol)
 {

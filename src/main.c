@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:09:49 by abara             #+#    #+#             */
-/*   Updated: 2017/02/24 13:43:29 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:37:08 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 int	main(int argc, char **argv)
 {

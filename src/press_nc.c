@@ -1,4 +1,4 @@
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 static t_v	rot_v(int key, t_v v)
 {

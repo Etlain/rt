@@ -6,11 +6,11 @@
 /*   By: cguilbar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/08 13:42:09 by cguilbar          #+#    #+#             */
-/*   Updated: 2017/01/25 12:50:41 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:34:54 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 void	ft_putpixel_img(void *img, int x, int y, int c)
 {

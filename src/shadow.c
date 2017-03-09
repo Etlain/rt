@@ -6,11 +6,11 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:16:39 by abara             #+#    #+#             */
-/*   Updated: 2017/03/08 13:13:46 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:42:54 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/RT.h"
+#include "../lib/rt.h"
 
 double	shadow(t_light *l, t_ray ray, t_object *obj, int *nb)
 {
