@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:52:01 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 13:40:13 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 13:52:22 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		save_file(char *name, t_winfo *winfo)
 	int	fd;
 	int	i;
 
-	if (remove(name) == -1);
+	if (remove(name) == -1)
 	{
 		ft_putendl("erreur suppression fichier");
 		return ;
