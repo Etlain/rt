@@ -6,13 +6,13 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 13:07:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:33:19 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 13:59:44 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
 
-void	get_nbr(t_v *t, char *str)
+void		get_nbr(t_v *t, char *str)
 {
 	char **tab;
 
@@ -48,7 +48,7 @@ static void	get_id(t_winfo *winfo, char *str)
 	}
 }
 
-void	exec3(t_winfo *winfo, char *cmd)
+void		exec3(t_winfo *winfo, char *cmd)
 {
 	char *elem;
 
