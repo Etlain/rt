@@ -6,25 +6,18 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 16:22:45 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/09 11:33:42 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:54:04 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
 
-static void		create_object_by_id(t_winfo *winfo, char *cmd, int id)
+static int		copy_struct(t_winfo *winfo, t_object *o, t_text *text)
 {
-	t_text *text;
-	t_object *o;
-	t_object *er;
-	int i;
-	int max;
+	int	i;
+	int	max;
 
-	winfo->file.nbobj++;
-	i = winfo->file.nbobj;
-	o = (t_object*)malloc(sizeof(t_object) * i);
-	text = (t_text*)malloc(sizeof(t_text) * i);
-	max = i - 1;
+	max = winfo->file.nbobj - 1;
 	i = 0;
 	while (i < max)
 	{
@@ -32,8 +25,22 @@ static void		create_object_by_id(t_winfo *winfo, char *cmd, int id)
 		text[i] = winfo->text[i];
 		i++;
 	}
+	return (i);
+}
+
+static void		create_object_by_id(t_winfo *winfo, char *cmd, int id)
+{
+	t_text		*text;
+	t_object	*o;
+	t_object	*er;
+	int			i;
+
+	winfo->file.nbobj++;
+	o = (t_object*)malloc(sizeof(t_object) * i);
+	text = (t_text*)malloc(sizeof(t_text) * i);
+	i = copy_struct(winfo, o, text);
 	o[i].type = id;
-    ensure_object(&o[i]);
+	ensure_object(&o[i]);
 	ensure_texture(&text[i]);
 	o[i].color = set_v(165, 65, 125);
 	o[i].a = add_v(winfo->cam.pos, mult_v(normalize(winfo->cam.dir), 20));
@@ -46,7 +53,7 @@ static void		create_object_by_id(t_winfo *winfo, char *cmd, int id)
 	winfo->text = text;
 }
 
-static void create_light(t_winfo *winfo, char *cmd)
+static void		create_light(t_winfo *winfo, char *cmd)
 {
 	t_light *o;
 	t_light *er;
@@ -63,7 +70,7 @@ static void create_light(t_winfo *winfo, char *cmd)
 		o[i] = winfo->light[i];
 		i++;
 	}
-    ensure_light(&o[i]);
+	ensure_light(&o[i]);
 	o[i].pos = add_v(winfo->cam.pos, mult_v(normalize(winfo->cam.dir), 20));
 	if (ft_strncmp(" ", cmd, 1) == 0)
 		get_nbr(&o[i].pos, cmd);
@@ -74,9 +81,9 @@ static void create_light(t_winfo *winfo, char *cmd)
 
 static void		create_object(t_winfo *winfo, char *cmd)
 {
-    if (ft_strncmp("sphere", cmd, 6) == 0)
-        create_object_by_id(winfo, &cmd[6], 1);
- 	else if (ft_strncmp("cylinder", cmd, 8) == 0)
+	if (ft_strncmp("sphere", cmd, 6) == 0)
+		create_object_by_id(winfo, &cmd[6], 1);
+	else if (ft_strncmp("cylinder", cmd, 8) == 0)
 		create_object_by_id(winfo, &cmd[9], 2);
 	else if (ft_strncmp("plane", cmd, 5) == 0)
 		create_object_by_id(winfo, &cmd[6], 3);
@@ -94,12 +101,11 @@ static void		create_object(t_winfo *winfo, char *cmd)
 		create_light(winfo, &cmd[5]);
 }
 
-void		ft_create(t_winfo *winfo, char *cmd)
+void			ft_create(t_winfo *winfo, char *cmd)
 {
-    char *elem;
+	char *elem;
 
-    elem = ft_strtrim(&cmd[7]);
-    printf("%s\n", elem);
-    create_object(winfo, elem);
-    free(elem);
+	elem = ft_strtrim(&cmd[7]);
+	create_object(winfo, elem);
+	free(elem);
 }
