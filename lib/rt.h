@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:47:54 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/09 11:48:15 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 16:36:41 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,5 +329,9 @@ t_v						sphere_t(t_object *obj, t_texture *text, t_v p);
 
 /* ft_link.c: */
 void					ft_link(t_winfo *winfo, char *cmd);
+
+/* put_fd.c: 2*/
+void					put_cl_fd(char *str, t_v val, int fd);
+void					put_nb_fd(char *str, double nb, int fd, int i);
 
 #endif
