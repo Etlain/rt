@@ -1,0 +1,26 @@
+.camera:
+{
+	/pos: 0;0;0
+	/dir: 0;0;1
+}
+
+.light:
+{
+	/pos: 0;0;0
+	/color: 125;125;0
+}
+
+.holecube:
+{
+	/r: -1000
+	/pos: 0;0;20
+	/color: 0;0;255
+}
+
+.plane:
+{
+	/normal: 0;1;0
+	/pos: 0;-5;0
+	/color: 165;65;120
+}
+

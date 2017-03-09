@@ -1,0 +1,60 @@
+.camera:
+{
+	/pos: 0;10;-10
+	/dir: 0;0;1
+}
+
+.light:
+{
+	/pos: 3;10;-4
+	/color: 125;125;125
+}
+
+.holecube:
+{
+	/r: -1000
+	/pos: 0;0;20
+	/color: 0;0;255
+	/texture: test.bmp
+}
+
+.torus:
+{
+	/dir: 1;0;1
+	/max: 5
+	/min: 1
+	/pos: 0;5;19
+	/color: 58;200;255
+	/texture: test.bmp
+}
+
+.triangle:
+{
+	/b: 0;6;13
+	/c: 0;6;13
+
+	/a: 0;9;13
+	/color: 58;200;255
+}
+
+.sphere:
+{
+	/r: 2
+	/pos: -2;2;16
+	/color: 255;255;255
+}
+
+.sphere:
+{
+	/r: 2
+	/pos: 2;2;16
+	/color: 255;255;255
+}
+
+.plane:
+{
+	/normal: 0;1;0
+	/pos: 0;-5;0
+	/color: 165;65;0
+}
+
