@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 13:16:39 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:42:54 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:17:43 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,13 @@ double	shadow(t_light *l, t_ray ray, t_object *obj, int *nb)
 		if (obj[r.id].type == 5)
 			norm1 = get_normal_other(&r, &obj[r.id], l[i]);
 		norm1 = normalize(norm1);
-
 		get_normal(&ray, &obj[ray.id]);
 		norm2 = set_v(obj[ray.id].c.x, obj[ray.id].c.y, obj[ray.id].c.z);
 		if (obj[ray.id].type == 5)
 			norm2 = get_normal_other(&ray, &obj[ray.id], l[i]);
 		norm2 = normalize(norm2);
-
-
-/*		v = normalize(get_v(l[i].pos, r.current));
-		d = dot(normalize(get_v(ray.a, r.current)), v);
-		if (r.id == ray.id && d >= 0)
-			n++;
-		else if (r.id == ray.id && obj[ray.id].type == 3)
-			n++;*/
 		if (r.id == ray.id && dot(norm1, norm2) > 0.9)
-		{
-		//	printf("DOT PRODUCT: %f\n", dot(norm1, norm2));
-			n++;
-		}
+			++n;
 		i++;
 	}
 	ret = (double)(1 / (double)nb[1]) * n;

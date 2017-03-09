@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:12:48 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:36:07 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:08:04 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static int	get_text_arg(t_text *text, char **file, int x, int y)
 	while (file[y] != NULL)
 	{
 		x = 0;
-		while (file[y][x] != '\0' && (file[y][x] != '.' && ft_isdigit(file[y][x + 1]) != 1))
+		while (file[y][x] != '\0' && (file[y][x] != '.' &&
+					ft_isdigit(file[y][x + 1]) != 1))
 		{
 			if (file[y][x] == '/')
 				get_arg(text, file, x, y);
@@ -57,7 +58,7 @@ static int	get_text_arg(t_text *text, char **file, int x, int y)
 
 static void	get_text_if(t_winfo *w, int x, int y, int *index)
 {
-	if (ft_strcmp(".sphere:", &w->file.file[y][x]) == 0) // fonction
+	if (ft_strcmp(".sphere:", &w->file.file[y][x]) == 0)
 	{
 		get_text_arg(&w->text[*index], w->file.file, x, y);
 		(*index)++;

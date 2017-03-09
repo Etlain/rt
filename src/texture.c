@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/09 14:05:51 by aputman           #+#    #+#             */
+/*   Updated: 2017/03/09 14:16:32 by aputman          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../lib/rt.h"
 
-unsigned char	*ft_ustrncpy_f(unsigned char *dest, const unsigned char *src, size_t n)
+unsigned char			*ft_ustrncpy_f(unsigned char *dest, const unsigned char *src,
+		size_t n)
 {
-	int		index;
-	int		i;
+	int					index;
+	int					i;
 
 	index = 0;
 	ft_bzero(dest, n);
@@ -23,9 +36,9 @@ static unsigned int		get_from_data(unsigned int pos, unsigned char *data)
 
 static unsigned int		get_size_bmp(char *filename)
 {
-	unsigned int	size;
-	char			*buf;
-	int				fd;
+	unsigned int		size;
+	char				*buf;
+	int					fd;
 
 	fd = open(filename, O_RDONLY);
 	buf = (char*)malloc(sizeof(char) * 6);
@@ -36,10 +49,10 @@ static unsigned int		get_size_bmp(char *filename)
 
 static unsigned char	*get_data(char *filename, unsigned int size)
 {
-	unsigned char	*data;
-	char			buf;
-	int				fd;
-	int				i;
+	unsigned char		*data;
+	char				buf;
+	int					fd;
+	int					i;
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
@@ -53,11 +66,12 @@ static unsigned char	*get_data(char *filename, unsigned int size)
 	return (data);
 }
 
-static void				get_texture_data(t_texture *t, size_t offset, size_t size, unsigned char *data)
+static void				get_texture_data(t_texture *t, size_t offset,
+		size_t size, unsigned char *data)
 {
-	unsigned int	bpp;
-	unsigned int	start;
-	int				i;
+	unsigned int		bpp;
+	unsigned int		start;
+	int					i;
 
 	i = 0;
 	start = offset;
@@ -85,13 +99,14 @@ static void				get_texture_data(t_texture *t, size_t offset, size_t size, unsign
 	}
 }
 
-static unsigned char	*invert_by_line(unsigned char *src, size_t w, size_t h, int size)
+static unsigned char	*invert_by_line(unsigned char *src, size_t w, size_t h,
+		int size)
 {
-	unsigned char	*tmp;
-	unsigned char	*dst;
-	int				x;
-	int				y;
-	int				i;
+	unsigned char		*tmp;
+	unsigned char		*dst;
+	int					x;
+	int					y;
+	int					i;
 
 	y = 0;
 	tmp = (unsigned char*)malloc(sizeof(unsigned char) * w * 3);
@@ -108,9 +123,9 @@ static unsigned char	*invert_by_line(unsigned char *src, size_t w, size_t h, int
 
 void					get_texture(t_texture *texture, char *filename)
 {
-	unsigned int	size;
-	unsigned char	*data;
-	int				i;
+	unsigned int		size;
+	unsigned char		*data;
+	int					i;
 
 	printf("%s\n", filename);
 	size = get_size_bmp(filename);
@@ -118,7 +133,9 @@ void					get_texture(t_texture *texture, char *filename)
 	texture->w = get_from_data(18, data);
 	texture->h = get_from_data(22, data);
 	texture->name = filename;
-	texture->texture = (unsigned char*)malloc(sizeof(unsigned char) * texture->w * texture->h * 3);
+	texture->texture = (unsigned char*)malloc(sizeof(unsigned char) * texture->w
+			* texture->h * 3);
 	get_texture_data(texture, get_from_data(10, data), size, data);
-	texture->texture = invert_by_line(texture->texture, texture->w, texture->h, texture->w * texture->h * 3);
+	texture->texture = invert_by_line(texture->texture, texture->w, texture->h,
+			texture->w * texture->h * 3);
 }

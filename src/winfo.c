@@ -6,11 +6,27 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:10:09 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:44:03 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 13:44:38 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
+
+static void	init_suite(t_file *file)
+{
+	file->size = 0;
+	file->nbobj = 0;
+	file->nbcam = 0;
+	file->nblight = 0;
+	file->nbsphere = 0;
+	file->nbcylinder = 0;
+	file->nbplane = 0;
+	file->nbcone = 0;
+	file->nbtriangle = 0;
+	file->nbtorus = 0;
+	file->nbelli = 0;
+	file->nbct = 0;
+}
 
 void		init_winfo_file(t_winfo *w, t_file *file)
 {
@@ -31,21 +47,10 @@ void		init_winfo_file(t_winfo *w, t_file *file)
 	w->opt.fxaa = 0;
 	w->opt.trt = 0;
 	w->opt.ref = 1;
-	file->size = 0;
-	file->nbobj = 0;
-	file->nbcam = 0;
-	file->nblight = 0;
-	file->nbsphere = 0;
-	file->nbcylinder = 0;
-	file->nbplane = 0;
-	file->nbcone = 0;
-	file->nbtriangle = 0;
-	file->nbtorus = 0;
-	file->nbelli = 0;
-	file->nbct = 0;
+	init_suite(*&file);
 }
 
-static char *get_source(char *filename)
+static char	*get_source(char *filename)
 {
 	char	*dst;
 	int		size;
@@ -74,16 +79,14 @@ void		get_opencl_winfo(t_winfo *w)
 
 	index = 0;
 	w->source = get_source("render.cl");
-
 	clGetPlatformIDs(1, &w->platform, NULL);
 	clGetDeviceIDs(w->platform, CL_DEVICE_TYPE_GPU, 1, &w->device, NULL);
-
 	w->context = clCreateContext(0, 1, &w->device, NULL, NULL, &w->err);
 	printf("error: %d.\n", w->err);
 	w->queue = clCreateCommandQueue(w->context, w->device, 0, &w->err);
 	printf("error: %d.\n", w->err);
-	w->program = clCreateProgramWithSource(w->context, 1, (const char **)&w->source, NULL, NULL);
-
+	w->program = clCreateProgramWithSource(w->context, 1,
+			(const char **)&w->source, NULL, NULL);
 	clBuildProgram(w->program, 1, &w->device, NULL, NULL, NULL);
 	w->kernel = clCreateKernel(w->program, "render_gpu", &w->err);
 	printf("error: %d.\n", w->err);

@@ -6,13 +6,13 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 10:37:38 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:42:17 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 13:37:28 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
 
-t_v reflection(t_ray ray, t_winfo *w, int *nb, int depth)
+t_v			reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 {
 	t_ray	ref;
 	t_v		n;
@@ -35,10 +35,13 @@ t_v reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 	}
 	ref.current = add_v(ref.a, mult_v(ref.dir, ref.t));
 	if (ref.id != -1)
-		ref.color = mult_v(add_v(mult_v(ray.color, 1 - w->text[ray.id].r), mult_v(limit_v(mult_v(ref.color, ret), 0, 255), 1 - w->text[ref.id].r)), 0.5);
+		ref.color = mult_v(add_v(mult_v(ray.color, 1 - w->text[ray.id].r),
+					mult_v(limit_v(mult_v(ref.color, ret), 0, 255),
+						1 - w->text[ref.id].r)), 0.5);
 	if (ref.id != -1)
 		return (reflection(ref, w, nb, depth - 1));
 //	return (set_v(0, 0, 0));
 //	return (mult_v(add_v(ray.color, set_v(0, 0, 0)), 0.5));
-	return (mult_v(add_v(set_v(0, 0, 0), mult_v(ray.color, 1 - w->text[ray.id].r)), 0.5));
+	return (mult_v(add_v(set_v(0, 0, 0), mult_v(ray.color, 1 -
+						w->text[ray.id].r)), 0.5));
 }
