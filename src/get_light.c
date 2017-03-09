@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 15:24:11 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:35:37 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:04:06 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	get_light_arg(t_light *light, char **file, int x, int y)
 	while (file[y] != NULL)
 	{
 		x = 0;
-		while (file[y][x] != '\0' && (file[y][x] != '.' && ft_isdigit(file[y][x + 1]) != 1))
+		while (file[y][x] != '\0' && (file[y][x] != '.' &&
+					ft_isdigit(file[y][x + 1]) != 1))
 		{
 			if (file[y][x] == '/')
 				get_arg(light, file, x, y);

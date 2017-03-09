@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:56:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:35:26 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/09 14:03:50 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	get_camera_arg(t_winfo *w, char **file, int x, int y)
 	while (file[y] != NULL)
 	{
 		x = 0;
-		while (file[y][x] != '\0' && (file[y][x] != '.' && ft_isdigit(file[y][x + 1]) != 1))
+		while (file[y][x] != '\0' && (file[y][x] != '.'
+					&& ft_isdigit(file[y][x + 1]) != 1))
 		{
 			if (file[y][x] == '/')
 				get_arg(w, file, x, y);
