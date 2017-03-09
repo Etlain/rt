@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 11:26:13 by abara             #+#    #+#             */
-/*   Updated: 2016/12/12 17:32:13 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/09 11:51:19 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ char	*ft_ftoa_get_dst(char *str, int power, int nbline)
 		index++;
 	}
 	free(str);
-	if (power == 0)
-		dst[index - 1] = '\0';
+	power == 0 ? dst[index - 1] = '\0' : 0;
 	return (dst);
 }
 
