@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:47:54 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/10 17:04:14 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/10 17:41:08 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@
 # include <stdio.h>
 # include <openCL/opencl.h>
 
-typedef cl_double3 t_v;
+typedef cl_double3		t_v;
+
+typedef struct			s_uv
+{
+	t_v					d;
+	double				u;
+	double				v;
+	double				j;
+	double				k;
+}						t_uv;
 
 typedef struct			s_bufgpu
 {
@@ -355,5 +364,11 @@ void					put_nb_fd(char *str, double nb, int fd, int i);
 
 /* save_other.c: 1*/
 void					save_other(t_winfo *winfo, int fd, int i);
+t_v						get_texel(t_texture t, int i, int j);
+void					get_uv_texture(t_winfo *w);
+double					limitation(double v, double min, double max);
+t_v						get_uv_normal(t_winfo *w, t_v n);
+t_v						apply_nmap(t_v v, t_v c);
+
 
 #endif

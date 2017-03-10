@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:53:50 by abara             #+#    #+#             */
-/*   Updated: 2017/03/10 14:25:24 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/10 17:42:39 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	light(t_winfo *w, t_light l, t_ray *ray, t_object *obj)
 	n = set_v(obj->c.x, obj->c.y, obj->c.z);
 	if (obj->type == 5)
 		n = get_normal_other(ray, obj, l);
+	n = get_uv_normal(w, n);
 	n = normalize(n);
 	d = dot(v, n);
 	if (d < w->opt.ambient || d > 1)
