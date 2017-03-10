@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:56:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 14:03:50 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 14:27:34 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static void	get_arg(t_winfo *w, char **file, int x, int y)
 		get_split(&w->cam.dir, file, x + 5, y);
 	else if (ft_strncmp("/ref:", &file[y][x], 5) == 0)
 		w->opt.ref = ft_atoi(&file[y][x + 5]);
+	else if (ft_strncmp("/ambient:", &file[y][x], 9) == 0)
+	{
+		w->opt.ambient = ft_atod(&file[y][x + 9]);
+		if (w->opt.ambient < 0 || w->opt.ambient > 1)
+			w->opt.ambient = 0;
+	}
+	else if (ft_strncmp("/cellshading:", &file[y][x], 13) == 0)
+		w->opt.cshade = ft_atoi(&file[y][x + 13]);
 }
 
 static int	get_camera_arg(t_winfo *w, char **file, int x, int y)

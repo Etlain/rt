@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:47:54 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/10 14:47:30 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 17:04:14 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@
 # include <openCL/opencl.h>
 
 typedef cl_double3 t_v;
+
+typedef struct			s_bufgpu
+{
+	cl_mem				pixels;
+	cl_mem				cam;
+	cl_mem				obj;
+	cl_mem				nbobj;
+	cl_mem				light;
+	cl_mem				nbl;
+}						t_bufgpu;
 
 typedef struct			s_xy
 {
@@ -77,6 +87,7 @@ typedef struct			s_text
 	t_texture			texture;
 	t_texture			normal;
 	double				r;
+	double				d;
 }						t_text;
 
 typedef struct			s_file
@@ -108,6 +119,8 @@ typedef struct			s_option
 	char				fxaa;
 	char				trt;
 	char				ref;
+	double				ambient;
+	int					cshade;
 	double				speed;
 }						t_option;
 
@@ -250,7 +263,7 @@ t_v						mult_v(t_v a, double b);
 t_v						invert_v(t_v v);
 
 /* light.c: 3*/
-void					check_light(t_light *l, t_ray *ray, t_object *obj, int nbl);
+void					check_light(t_winfo *w, t_light *l, t_ray *ray, t_object *obj);
 void					get_normal(t_ray *ray, t_object *obj);
 t_v						get_normal_other(t_ray *ray, t_object *obj, t_light l);
 /*	STATIC:

@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 09:57:30 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:42:28 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:05:05 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,20 @@ static t_v	render_loop(t_winfo *w, int x, int y)
 		if ((w->obj[w->ray.id].type == 1 || w->obj[w->ray.id].type == 6 || w->obj[w->ray.id].type == 7 || w->obj[w->ray.id].type == 8) && w->text[w->ray.id].texture.texture != NULL)
 		{
 			d = normalize(get_v(w->obj[w->ray.id].a, w->ray.current));
-			u = (0.5 + atan2(d.z, d.x) / (M_PI * 2));
+			u = (0.5 + atan2(d.z, d.x) / (M_PI * 2)) + w->text[w->ray.id].d;
 			v = acos(d.y) / (M_PI * 2);
 			j = limitation(u * w->text[w->ray.id].texture.w, 0, w->text[w->ray.id].texture.w - 1);
 			k = limitation(v * w->text[w->ray.id].texture.h, 0, w->text[w->ray.id].texture.h - 1);
 			w->obj[w->ray.id].color = get_texel(w->text[w->ray.id].texture, j, k);
 		}
-		check_light(w->light, &w->ray, &w->obj[w->ray.id], w->file.nblight);
+		check_light(w, w->light, &w->ray, &w->obj[w->ray.id]);
+		if (w->file.nblight == 0)
+			w->ray.color = w->obj[w->ray.id].color;
 		ret = shadow(w->light, w->ray, w->obj, nb);
+		if (ret < w->opt.ambient)
+			ret = w->opt.ambient;
 		w->ray.color = limit_v(mult_v(w->ray.color, ret), 0, 255);
-		w->obj[w->ray.id].color = objcolor;	
+		w->obj[w->ray.id].color = objcolor;
 		w->ray.color = reflection(w->ray, w, nb, w->opt.ref);
 	}
 	else

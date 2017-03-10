@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:10:09 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 13:44:38 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/10 12:44:06 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void		init_winfo_file(t_winfo *w, t_file *file)
 	w->opt.fxaa = 0;
 	w->opt.trt = 0;
 	w->opt.ref = 1;
+	w->opt.ambient = 0;
+	w->opt.cshade = 0;
 	init_suite(*&file);
 }
 

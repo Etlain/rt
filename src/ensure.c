@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:44:56 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:32:39 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:37:51 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ensure_texture(t_text *text)
 	text->texture.texture = NULL;
 	text->normal.texture = NULL;
 	text->r = 0;
+	text->d = 0;
 }
 
 void	ensure_light(t_light *light)

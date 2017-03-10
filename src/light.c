@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:53:50 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:36:53 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 14:25:24 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	get_specular(t_ray *ray, t_light l, t_v n)
 	}
 }
 
-static void	light(t_light l, t_ray *ray, t_object *obj)
+static void	light(t_winfo *w, t_light l, t_ray *ray, t_object *obj)
 {
 	t_v		v;
 	t_v		n;
@@ -83,31 +83,35 @@ static void	light(t_light l, t_ray *ray, t_object *obj)
 		n = get_normal_other(ray, obj, l);
 	n = normalize(n);
 	d = dot(v, n);
-	if (d < 0 || d > 1)
-		d = 0;
-/*	d *= 8;
-	t = (int)d;
-	d = (double)t;
-	d /= 8;*/
+	if (d < w->opt.ambient || d > 1)
+		d = w->opt.ambient;
+	if (w->opt.cshade > 0)
+	{
+		d *= w->opt.cshade;
+		t = (int)d;
+		d = (double)t;
+		d /= w->opt.cshade;
+	}
 	ray->color = mult_v(ray->color, d);
-	get_specular(ray, l, n);
+	if (w->opt.ambient == 0)
+		get_specular(ray, l, n);
 }
 
-void		check_light(t_light *l, t_ray *ray, t_object *obj, int nbl)
+void		check_light(t_winfo *w, t_light *l, t_ray *ray, t_object *obj)
 {
 	t_v		color;
 	double	part;
 	int		i;
 
 	i = 0;
-	if (nbl != 0)
-		part = (double)(1 / (double)nbl);
+	if (w->file.nblight != 0)
+		part = (double)(1 / (double)w->file.nblight);
 	else
 		part = 0;
 	color = set_v(0, 0, 0);
-	while (i < nbl)
+	while (i < w->file.nblight)
 	{
-		light(l[i], ray, obj);
+		light(w, l[i], ray, obj);
 		color = add_v(color, ray->color);
 		color = mult_v(color, 0.75);
 		i++;

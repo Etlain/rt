@@ -6,7 +6,7 @@
 /*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:05:44 by aputman           #+#    #+#             */
-/*   Updated: 2017/03/09 14:05:45 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/10 16:05:48 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,16 @@ void		press_noconsole(t_winfo *w, int key)
 	}
 	else
 	{
-		if (key == 69)
-			++w->opt.fxaa;
-		else if (key == 78 && w->opt.fxaa > 0)
-			--w->opt.fxaa;
-		else if (key == 269)
+		if (key == 269)
 			w->opt.trt = !w->opt.trt;
 		else if (key == 18)
 			w->opt.oselect = -1;
 		else
 		{
-			printf("fxaa: %d, trt: %d\n", (int)w->opt.fxaa, w->opt.trt);
+			if (key == 69 && w->opt.oselect != -1)
+				w->text[w->ray.id].d += 0.01;
+			else if (key == 78 && w->opt.oselect != -1)
+				w->text[w->ray.id].d -= 0.01;
 			if (w->opt.render == 0)
 				render_cpu(w);
 			else
