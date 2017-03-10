@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:47:54 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/09 16:36:41 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 14:47:30 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <openCL/opencl.h>
 
 typedef cl_double3 t_v;
+
+typedef struct			s_xy
+{
+	int					x;
+	int					y;
+}						t_xy;
 
 typedef struct			s_ray
 {
@@ -333,5 +339,8 @@ void					ft_link(t_winfo *winfo, char *cmd);
 /* put_fd.c: 2*/
 void					put_cl_fd(char *str, t_v val, int fd);
 void					put_nb_fd(char *str, double nb, int fd, int i);
+
+/* save_other.c: 1*/
+void					save_other(t_winfo *winfo, int fd, int i);
 
 #endif
