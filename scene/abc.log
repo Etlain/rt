@@ -16,4 +16,5 @@
 	/pos: 13.499999;1.0;30.0
 	/color: 255.0;255.0;255.0
 	/texture: test.bmp
+	/nmap: normap.bmp
 }
