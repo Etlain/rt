@@ -6,57 +6,67 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/06 12:45:10 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 13:35:21 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/10 16:34:20 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
 
-void	render_gpu(t_winfo *w)
+static void	create_buff(t_winfo *w, t_bufgpu *buff, int *pixels)
 {
-	cl_mem	pixels_buffer;
-	cl_mem	cam_buffer;
-	cl_mem	obj_buffer;
-	cl_mem	nbobj_buffer;
-	cl_mem	light_buffer;
-	cl_mem	nbl_buffer;
-	int		*pixels;
-	size_t	global;
-	size_t	local;
-	int		i;
+	buff->pixels = clCreateBuffer(w->context, CL_MEM_WRITE_ONLY |
+	CL_MEM_COPY_HOST_PTR, 4 * W * H * sizeof(int), pixels, NULL);
+	buff->cam = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
+	CL_MEM_COPY_HOST_PTR, sizeof(t_cam), &w->cam, NULL);
+	buff->obj = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
+	CL_MEM_COPY_HOST_PTR, w->file.nbobj * sizeof(t_object), w->obj, NULL);
+	buff->nbobj = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
+	CL_MEM_COPY_HOST_PTR, sizeof(int), &w->file.nbobj, NULL);
+	buff->light = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
+	CL_MEM_COPY_HOST_PTR, w->file.nblight * sizeof(t_light), w->light, NULL);
+	buff->nbl = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
+	CL_MEM_COPY_HOST_PTR, sizeof(int), &w->file.nblight, NULL);
+}
+
+static void	set_buff(t_winfo *w, t_bufgpu *buff)
+{
+	clSetKernelArg(w->kernel, 0, sizeof(buff->pixels), (void*)&buff->pixels);
+	clSetKernelArg(w->kernel, 1, sizeof(buff->cam), (void*)&buff->cam);
+	clSetKernelArg(w->kernel, 2, sizeof(buff->obj), (void*)&buff->obj);
+	clSetKernelArg(w->kernel, 3, sizeof(buff->nbobj), (void*)&buff->nbobj);
+	clSetKernelArg(w->kernel, 4, sizeof(buff->light), (void*)&buff->light);
+	clSetKernelArg(w->kernel, 5, sizeof(buff->nbl), (void*)&buff->nbl);
+}
+
+static void	release_buff(t_bufgpu *buff)
+{
+	clReleaseMemObject(buff->pixels);
+	clReleaseMemObject(buff->cam);
+	clReleaseMemObject(buff->obj);
+	clReleaseMemObject(buff->nbobj);
+	clReleaseMemObject(buff->light);
+	clReleaseMemObject(buff->nbl);
+}
+
+void		render_gpu(t_winfo *w)
+{
+	t_bufgpu	buff;
+	int			*pixels;
+	size_t		global;
+	size_t		local;
+	int			i;
 
 	i = 0;
 	global = W * H;
 	local = 128;
 	pixels = (int *)malloc(sizeof(int) * W * H * 4);
-	pixels_buffer = clCreateBuffer(w->context, CL_MEM_WRITE_ONLY |
-	CL_MEM_COPY_HOST_PTR, 4 * W * H * sizeof(int), pixels, NULL);
-	cam_buffer = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
-	CL_MEM_COPY_HOST_PTR, sizeof(t_cam), &w->cam, NULL);
-	obj_buffer = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
-	CL_MEM_COPY_HOST_PTR, w->file.nbobj * sizeof(t_object), w->obj, NULL);
-	nbobj_buffer = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
-	CL_MEM_COPY_HOST_PTR, sizeof(int), &w->file.nbobj, NULL);
-	light_buffer = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
-	CL_MEM_COPY_HOST_PTR, w->file.nblight * sizeof(t_light), w->light, NULL);
-	nbl_buffer = clCreateBuffer(w->context, CL_MEM_READ_ONLY |
-	CL_MEM_COPY_HOST_PTR, sizeof(int), &w->file.nblight, NULL);
-	clSetKernelArg(w->kernel, 0, sizeof(pixels_buffer), (void*)&pixels_buffer);
-	clSetKernelArg(w->kernel, 1, sizeof(cam_buffer), (void*)&cam_buffer);
-	clSetKernelArg(w->kernel, 2, sizeof(obj_buffer), (void*)&obj_buffer);
-	clSetKernelArg(w->kernel, 3, sizeof(nbobj_buffer), (void*)&nbobj_buffer);
-	clSetKernelArg(w->kernel, 4, sizeof(light_buffer), (void*)&light_buffer);
-	clSetKernelArg(w->kernel, 5, sizeof(nbl_buffer), (void*)&nbl_buffer);
+	create_buff(w, &buff, pixels);
+	set_buff(w, &buff);
 	clEnqueueNDRangeKernel(w->queue, w->kernel, 1, NULL, &global, &local, 0,
 			NULL, NULL);
-	clEnqueueReadBuffer(w->queue, pixels_buffer, CL_TRUE, 0, 4 * W * H *
+	clEnqueueReadBuffer(w->queue, buff.pixels, CL_TRUE, 0, 4 * W * H *
 			sizeof(int), pixels, 0, NULL, NULL);
-	clReleaseMemObject(pixels_buffer);
-	clReleaseMemObject(cam_buffer);
-	clReleaseMemObject(obj_buffer);
-	clReleaseMemObject(nbobj_buffer);
-	clReleaseMemObject(light_buffer);
-	clReleaseMemObject(nbl_buffer);
+	release_buff(&buff);
 	while (i < 4 * W * H)
 	{
 		w->data[i] = (char)pixels[i];
