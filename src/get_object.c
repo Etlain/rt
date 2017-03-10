@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:12:48 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 13:52:20 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/10 15:01:49 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,56 +57,35 @@ static int	get_object_arg(t_object *obj, char **file, int x, int y)
 	return (0);
 }
 
+static void	get_obj(t_winfo *w, t_xy xy, int *index, int type)
+{
+	w->obj[*index].type = type;
+	get_object_arg(&w->obj[*index], w->file.file, xy.x, xy.y);
+	(*index)++;
+}
+
 static void	get_object_if(t_winfo *w, int x, int y, int *index)
 {
+	t_xy xy;
+
+	xy.x = x;
+	xy.y = y;
 	if (ft_strcmp(".sphere:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 1;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 1);
 	else if (ft_strcmp(".cylinder:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 2;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 2);
 	else if (ft_strcmp(".plane:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 3;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 3);
 	else if (ft_strcmp(".cone:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 4;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 4);
 	else if (ft_strcmp(".triangle:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 5;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 5);
 	else if (ft_strcmp(".torus:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 6;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 6);
 	else if (ft_strcmp(".holecube:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 7;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 7);
 	else if (ft_strcmp(".ellipsoid:", &w->file.file[y][x]) == 0)
-	{
-		w->obj[*index].type = 8;
-		get_object_arg(&w->obj[*index], w->file.file, x, y);
-		(*index)++;
-	}
+		get_obj(w, xy, index, 8);
 }
 
 void		get_object(t_winfo *w)
@@ -118,7 +97,6 @@ void		get_object(t_winfo *w)
 	y = 0;
 	index = 0;
 	w->obj = NULL;
-	printf("Nombre d'objet(s): %d\n", w->file.nbobj);
 	if (w->file.nbobj != 0)
 		w->obj = (t_object *)malloc(sizeof(t_object) * w->file.nbobj);
 	while (y < w->file.size)

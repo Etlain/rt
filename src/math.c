@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 11:29:15 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:37:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 12:35:46 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,6 @@ double	get_t_a(double delta, double a, double b)
 	}
 	return (-1);
 }
-
-/*double	get_t_b(t_object *obj, t_ray *ray, double delta, double *ab)
-{
-	double	t1;
-	double	t2;
-	double	m1;
-	double	m2;
-
-
-	if (delta == 0)
-	{
-		t1 = -b / (2 * a);
-		return (t1);
-	}
-	else if (delta > 0)
-	{
-		t1 = (-b - sqrt(delta)) / (2 * a);
-		t2 = (-b + sqrt(delta)) / (2 * a);
-		if (t1 < t2)
-			return (t1);
-		return (t2);
-	}
-	return (-1);
-}*/
 
 double	dpower(double n, double t)
 {

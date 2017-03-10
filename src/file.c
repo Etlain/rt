@@ -6,34 +6,11 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:52:01 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 16:31:54 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/10 12:33:18 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
-
-static void	save_poscol(t_winfo *winfo, int fd, int i)
-{
-	if (winfo->obj[i].type != 5)
-		put_cl_fd("/pos: ", winfo->obj[i].a, fd);
-	else
-		put_cl_fd("/a: ", winfo->obj[i].a, fd);
-	put_cl_fd("/color: ", winfo->obj[i].color, fd);
-	put_nb_fd("\t/reflection: ", winfo->text[i].r, fd, i);
-	if (winfo->text[i].texture.texture != NULL)
-	{
-		ft_putstr_fd("\t/texture: ", fd);
-		ft_putstr_fd(winfo->text[i].texture.name, fd);
-		ft_putchar_fd('\n', fd);
-	}
-	if (winfo->text[i].normal.texture != NULL)
-	{
-		ft_putstr_fd("\t/nmap: ", fd);
-		ft_putstr_fd(winfo->text[i].normal.name, fd);
-		ft_putchar_fd('\n', fd);
-	}
-	ft_putstr_fd("}\n\n", fd);
-}
 
 static void	save_obj3(t_winfo *winfo, int fd, int i)
 {
@@ -99,10 +76,10 @@ static void	save_obj(t_winfo *winfo, int fd, int i)
 	}
 	else
 		save_obj2(winfo, fd, i);
-	save_poscol(winfo, fd, i);
+	save_other(winfo, fd, i);
 }
 
-void		save_camlight(t_winfo *winfo, int fd)
+static void	save_camlight(t_winfo *winfo, int fd)
 {
 	int i;
 

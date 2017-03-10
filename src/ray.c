@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 10:37:38 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 13:37:28 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/10 15:02:34 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_v			reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 						1 - w->text[ref.id].r)), 0.5);
 	if (ref.id != -1)
 		return (reflection(ref, w, nb, depth - 1));
-//	return (set_v(0, 0, 0));
-//	return (mult_v(add_v(ray.color, set_v(0, 0, 0)), 0.5));
 	return (mult_v(add_v(set_v(0, 0, 0), mult_v(ray.color, 1 -
 						w->text[ray.id].r)), 0.5));
 }
