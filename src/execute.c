@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 13:07:02 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 14:00:29 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/13 15:04:30 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,10 @@ void		exec(t_winfo *winfo, char *cmd)
 		winfo->opt.fxaa = ft_atoi(&cmd[4]);
 	else if (ft_strncmp("sepia", cmd, 5) == 0)
 		winfo->opt.sepia = ft_atoi(&cmd[5]);
+	else if (ft_strncmp("cellshading", cmd, 11) == 0)
+		winfo->opt.cshade = ft_atoi(&cmd[11]);
+	else if (ft_strncmp("ambient", cmd, 7) == 0)
+		winfo->opt.ambient = ft_atod(&cmd[7]);
 	else
 		exec2(winfo, cmd);
 	render_cpu(winfo);

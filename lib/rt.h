@@ -6,7 +6,7 @@
 /*   By: mmouhssi <mmouhssi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:47:54 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/13 13:14:35 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/13 13:32:33 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,5 +250,6 @@ t_v						apply_nmap(t_v v, t_v c);
 unsigned char			*ft_ustrncpy_f(unsigned char *dest,
 						const unsigned char *src, size_t n);
 unsigned int			get_from_data(unsigned int pos, unsigned char *data);
+t_v						v_mult_v(t_v a, t_v b);
 
 #endif

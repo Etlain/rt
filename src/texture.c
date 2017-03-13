@@ -6,7 +6,7 @@
 /*   By: aputman <aputman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:05:51 by aputman           #+#    #+#             */
-/*   Updated: 2017/03/13 12:57:58 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/13 14:53:18 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ static unsigned int		get_size_bmp(char *filename)
 	fd = open(filename, O_RDONLY);
 	buf = (char*)malloc(sizeof(char) * 6);
 	if (read(fd, buf, 6) > 0)
-		return (get_from_data(2, (unsigned char*)buf));
+	{
+		size = get_from_data(2, (unsigned char*)buf);
+		ft_memdel((void**)&buf);
+		return (size);
+	}
+	ft_memdel((void**)&buf);
 	return (0);
 }
 
@@ -99,17 +104,20 @@ void					get_texture(t_texture *texture, char *filename)
 {
 	unsigned int		size;
 	unsigned char		*data;
+	unsigned char		*tmp;
 	int					i;
 
-	printf("%s\n", filename);
 	size = get_size_bmp(filename);
 	data = get_data(filename, size);
 	texture->w = get_from_data(18, data);
 	texture->h = get_from_data(22, data);
 	texture->name = filename;
 	texture->texture = (unsigned char*)malloc(sizeof(unsigned char) * texture->w
-			* texture->h * 3);
+	* texture->h * 3);
+	tmp = texture->texture;
 	get_texture_data(texture, get_from_data(10, data), size, data);
 	texture->texture = invert_by_line(texture->texture, texture->w, texture->h,
 			texture->w * texture->h * 3);
+	ft_memdel((void**)&data);
+	ft_memdel((void**)&tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 17:46:19 by abara             #+#    #+#             */
-/*   Updated: 2017/03/09 11:43:39 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/03/13 13:32:10 by abara            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,12 @@ t_v		get_v(t_v a, t_v b)
 	res.y = b.y - a.y;
 	res.z = b.z - a.z;
 	return (res);
+}
+
+t_v		v_mult_v(t_v a, t_v b)
+{
+	a.x = a.x * b.x;
+	a.y = a.y * b.y;
+	a.z = a.z * b.z;
+	return (a);
 }
