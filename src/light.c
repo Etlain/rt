@@ -6,7 +6,7 @@
 /*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:53:50 by abara             #+#    #+#             */
-/*   Updated: 2017/03/10 17:42:39 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/13 12:50:09 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	light(t_winfo *w, t_light l, t_ray *ray, t_object *obj)
 	t_v		v;
 	t_v		n;
 	double	d;
-	double	t;
 
 	ray->color = add_v(obj->color, l.color);
 	ray->current = add_v(ray->a, mult_v(ray->dir, ray->t));
@@ -88,9 +87,7 @@ static void	light(t_winfo *w, t_light l, t_ray *ray, t_object *obj)
 		d = w->opt.ambient;
 	if (w->opt.cshade > 0)
 	{
-		d *= w->opt.cshade;
-		t = (int)d;
-		d = (double)t;
+		d = (double)((int)(d * w->opt.cshade));
 		d /= w->opt.cshade;
 	}
 	ray->color = mult_v(ray->color, d);

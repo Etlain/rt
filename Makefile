@@ -6,7 +6,9 @@ SRC =	main.c winfo.c press.c error.c parse.c check.c memory.c get_camera.c help.
 		press_c.c keycode.c ft_fxaa.c ft_rgbcmp.c ft_getpixel.c ft_putpixel_img.c	\
 		execute.c file.c new_double.c degree_2.c cubic.c quartic.c torus.c ct.c		\
 		ellipsoid.c render_gpu.c ft_create.c ft_delete.c ft_modify.c get_texture.c	\
-		texture.c ft_link.c put_fd.c save_other.c get_uv_texture.c n_map.c
+		texture.c ft_link.c put_fd.c save_other.c get_uv_texture.c n_map.c			\
+		ft_ustrncpy_f.c get_from_data.c
+
 
 SRC_PATH = src/
 

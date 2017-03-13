@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aputman <aputman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:05:51 by aputman           #+#    #+#             */
-/*   Updated: 2017/03/09 14:16:32 by aputman          ###   ########.fr       */
+/*   Updated: 2017/03/13 12:57:58 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
-
-unsigned char			*ft_ustrncpy_f(unsigned char *dest, const unsigned char *src,
-		size_t n)
-{
-	int					index;
-	int					i;
-
-	index = 0;
-	ft_bzero(dest, n);
-	while (index != n)
-	{
-		dest[index] = src[index];
-		index++;
-	}
-	return (dest);
-}
-
-static unsigned int		get_from_data(unsigned int pos, unsigned char *data)
-{
-	data = data + pos;
-	return (*(unsigned int*)data);
-}
 
 static unsigned int		get_size_bmp(char *filename)
 {
@@ -87,14 +65,10 @@ static void				get_texture_data(t_texture *t, size_t offset,
 	}
 	else if (bpp == 32)
 	{
-		while (offset < size)
+		while (offset++ < size)
 		{
 			if ((offset - start) % 4 != 0)
-			{
-				t->texture[i] = data[offset];
-				i++;
-			}
-			offset++;
+				t->texture[i++] = data[offset];
 		}
 	}
 }

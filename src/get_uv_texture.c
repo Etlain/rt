@@ -6,13 +6,13 @@
 /*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 17:09:12 by abara             #+#    #+#             */
-/*   Updated: 2017/03/10 17:52:54 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/13 13:05:49 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
 
-void		set_vrep(t_v d, t_v *v)
+void	set_vrep(t_v d, t_v *v)
 {
 	v[2] = normalize(d);
 	if (fabs(v[2].y) == 1)
@@ -30,7 +30,7 @@ void		set_vrep(t_v d, t_v *v)
 	v[1] = normalize(v[1]);
 }
 
-double		limitation(double v, double min, double max)
+double	limitation(double v, double min, double max)
 {
 	if (v > max)
 		v = (double)((int)v % (int)max);
@@ -57,7 +57,6 @@ t_v		get_texel(t_texture t, int i, int j)
 	if (j * (t.w * 3) + (i * 3) + 1 < t.h * t.w * 3)
 		color.z = t.texture[j * (t.w * 3) + (i * 3) + 2];
 	return (color);
-
 }
 
 void	get_uv_texture(t_winfo *w)
@@ -69,7 +68,8 @@ void	get_uv_texture(t_winfo *w)
 	&& w->text[w->ray.id].texture.texture != NULL)
 	{
 		uv.d = normalize(get_v(w->obj[w->ray.id].a, w->ray.current));
-		uv.u = (0.5 + atan2(uv.d.z, uv.d.x) / (M_PI * 2)) + w->text[w->ray.id].d;
+		uv.u = (0.5 + atan2(uv.d.z, uv.d.x) / (M_PI * 2))
+			+ w->text[w->ray.id].d;
 		uv.v = acos(uv.d.y) / (M_PI * 2);
 		uv.j = limitation(uv.u * w->text[w->ray.id].texture.w,
 		0, w->text[w->ray.id].texture.w - 1);
@@ -90,7 +90,8 @@ t_v		get_uv_normal(t_winfo *w, t_v n)
 	&& w->text[w->ray.id].normal.texture != NULL)
 	{
 		uv.d = normalize(get_v(w->obj[w->ray.id].a, w->ray.current));
-		uv.u = (0.5 + atan2(uv.d.z, uv.d.x) / (M_PI * 2)) + w->text[w->ray.id].d;
+		uv.u = (0.5 + atan2(uv.d.z, uv.d.x) / (M_PI * 2))
+			+ w->text[w->ray.id].d;
 		uv.v = acos(uv.d.y) / (M_PI * 2);
 		uv.j = limitation(uv.u * w->text[w->ray.id].normal.w,
 		0, w->text[w->ray.id].normal.w - 1);

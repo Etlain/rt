@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_nc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aputman <aputman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 14:05:44 by aputman           #+#    #+#             */
-/*   Updated: 2017/03/10 16:05:48 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/13 11:42:15 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,25 @@ static t_v	trans_p(t_winfo *w, int key, t_v p)
 	return (p);
 }
 
+static void	other_key(t_winfo *w, int key)
+{
+	if (key == 269)
+		w->opt.trt = !w->opt.trt;
+	else if (key == 18)
+		w->opt.oselect = -1;
+	else
+	{
+		if (key == 69 && w->opt.oselect != -1)
+			w->text[w->ray.id].d += 0.01;
+		else if (key == 78 && w->opt.oselect != -1)
+			w->text[w->ray.id].d -= 0.01;
+		if (w->opt.render == 0)
+			render_cpu(w);
+		else
+			render_gpu(w);
+	}
+}
+
 void		press_noconsole(t_winfo *w, int key)
 {
 	if (w->opt.oselect == -1)
@@ -100,21 +119,5 @@ void		press_noconsole(t_winfo *w, int key)
 		mlx_put_image_to_window(w->mlx, w->win, w->img, 0, 0);
 	}
 	else
-	{
-		if (key == 269)
-			w->opt.trt = !w->opt.trt;
-		else if (key == 18)
-			w->opt.oselect = -1;
-		else
-		{
-			if (key == 69 && w->opt.oselect != -1)
-				w->text[w->ray.id].d += 0.01;
-			else if (key == 78 && w->opt.oselect != -1)
-				w->text[w->ray.id].d -= 0.01;
-			if (w->opt.render == 0)
-				render_cpu(w);
-			else
-				render_gpu(w);
-		}
-	}
+		other_key(w, key);
 }

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abara <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: abara <abara@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/12 10:37:38 by abara             #+#    #+#             */
-/*   Updated: 2017/03/10 12:59:44 by abara            ###   ########.fr       */
+/*   Updated: 2017/03/13 11:52:44 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../lib/rt.h"
+
+static void	init_ref(t_ray *ref, t_ray ray, t_v n)
+{
+	ref->dir = add_v(get_v(ray.a, ray.current), mult_v(mult_v(n, 2),
+	dot(invert_v(n), get_v(ray.a, ray.current))));
+	ref->dir = normalize(ref->dir);
+	ref->id = -1;
+	ref->t = -1;
+}
 
 t_v			reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 {
@@ -22,11 +31,7 @@ t_v			reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 		return (ray.color);
 	ref.a = ray.current;
 	n = w->obj[ray.id].c;
-	ref.dir = add_v(get_v(ray.a, ray.current), mult_v(mult_v(n, 2),
-	dot(invert_v(n), get_v(ray.a, ray.current))));
-	ref.dir = normalize(ref.dir);
-	ref.id = -1;
-	ref.t = -1;
+	init_ref(&ref, ray, n);
 	intersection(&ref, w->obj, w->file.nbobj);
 	if (ref.id != -1)
 	{
@@ -40,8 +45,6 @@ t_v			reflection(t_ray ray, t_winfo *w, int *nb, int depth)
 						1 - w->text[ref.id].r)), 0.5);
 	if (ref.id != -1)
 		return (reflection(ref, w, nb, depth - 1));
-//	return (set_v(0, 0, 0));
-//	return (mult_v(add_v(ray.color, set_v(0, 0, 0)), 0.5));
 	return (mult_v(add_v(set_v(0, 0, 0), mult_v(ray.color, 1 -
 						w->text[ray.id].r)), 0.5));
 }
